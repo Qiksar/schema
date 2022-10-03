@@ -232,16 +232,22 @@
     },
     "BaseFields": {
       "description": "Fields inherited by every repository",
-      "type": "object",
-      "additionalProperties": {
-        "$ref": "#/definitions/field"
+      "type": "array",
+      "items": {
+        "type":"object",
+        "additionalProperties": {
+          "$ref": "#/definitions/field"
+        }
       }
     },
     "TemplateFields": {
       "description": "Fields available to be inherited by any repository",
-      "type": "object",
-      "additionalProperties": {
-        "$ref": "#/definitions/field"
+      "type": "array",
+      "items": {
+        "type":"object",
+        "additionalProperties": {
+          "$ref": "#/definitions/field"
+        }
       }
     },
     "RepositoryDefinitions": {
