@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id":"https://raw.githubusercontent.com/Qiksar/schema/main/qikblox.json",
+  "$id": "https://raw.githubusercontent.com/Qiksar/schema/main/qikblox.json",
   "title": "Qikblox",
   "description": "Schema definition for Qikblox data models",
   "type": "object",
@@ -48,6 +48,7 @@
           "description": "specifies aditional fields for the join table",
           "type": "array",
           "items": {
+            "type": "object",
             "additionalProperties": {
               "$ref": "#/definitions/repositoryField"
             }
@@ -159,10 +160,13 @@
           "description": "Crudio data generator to use, and must be wrapped in [ ], e.g. [name]",
           "type": "string"
         },
-        "age":{"type":"string"}
+        "age": {
+          "type": "string"
+        }
       },
       "required": [
-        "name","age"
+        "name",
+        "age"
       ]
     },
     "repositoryField": {
@@ -254,7 +258,7 @@
       "description": "Fields available to be inherited by any repository",
       "type": "array",
       "items": {
-        "type":"object",
+        "type": "object",
         "properties": {
           "additionalProperties": {
             "$ref": "#/definitions/field"
@@ -266,6 +270,7 @@
       "description": "specify the repositories in the datamodel",
       "type": "array",
       "items": {
+        "type": "object",
         "properties": {
           "additionalProperties": {
             "$ref": "#/definitions/repositoryDefinition"
