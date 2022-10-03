@@ -83,7 +83,8 @@
             }
           }
         }
-      }
+      },
+      "required": ["name"]
     },
     "field": {
       "type": "object",
@@ -164,7 +165,6 @@
         },
         {
           "description": "Fields available to be inherited by any repository",
-          "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/field"
           }
@@ -234,7 +234,6 @@
       "description": "Fields inherited by every repository",
       "type": "array",
       "items": {
-        "type":"object",
         "additionalProperties": {
           "$ref": "#/definitions/field"
         }
@@ -244,7 +243,6 @@
       "description": "Fields available to be inherited by any repository",
       "type": "array",
       "items": {
-        "type":"object",
         "additionalProperties": {
           "$ref": "#/definitions/field"
         }
