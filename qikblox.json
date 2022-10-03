@@ -1,0 +1,255 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "definitions": {
+    "repositoryDefinition": {
+      "description": "specifies an entity, its fields and relationships",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Unique repository name",
+          "type": "string"
+        },
+        "caption": {
+          "description": "Text to display in user interface",
+          "type": "string"
+        },
+        "path": {
+          "description": "API path if applicable",
+          "type": "string"
+        },
+        "icon": {
+          "description": "Icon to display in user interface",
+          "type": "string"
+        },
+        "inherit": {
+          "description": "a string containing the name of another repository to inherit details from",
+          "type": "string"
+        },
+        "dataType": {
+          "type": "object",
+          "properties": {
+            "entity": {
+              "type": "string"
+            },
+            "table": {
+              "type": "string"
+            }
+          }
+        },
+        "treeview": {
+          "description": "Indicates if data can be displayed hierarchically",
+          "type": "boolean"
+        },
+        "gqlFields": {
+          "description": "specifies aditional fields for the join table",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/repositoryField"
+          }
+        },
+        "icon_map": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "icon_field": {
+          "type": "string"
+        },
+        "noroute": {
+          "type": "boolean",
+          "default": false
+        },
+        "collapse_fields": {
+          "type": "object",
+          "properties": {
+            "source_field": {
+              "type": "string"
+            },
+            "key_path": {
+              "type": "string"
+            },
+            "value_path": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "field": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Unique fieldname",
+          "type": "string"
+        },
+        "help": {
+          "description": "Documentation to help users understand the purpose of the field",
+          "type": "string"
+        },
+        "table": {
+          "description": "Name of the underlying data source or database table",
+          "type": "string"
+        },
+        "flatten": {
+          "description": "Specifies fields to import from the specified table",
+          "type": "string"
+        },
+        "data_type": {
+          "description": "field type",
+          "string": "string",
+          "enum": [
+            "string",
+            "integer",
+            "number",
+            "timestamp",
+            "jsonb"
+          ]
+        },
+        "options": {
+          "description": "Optional field hints",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "hidden",
+              "ongrid",
+              "ontree",
+              "unique",
+              "required",
+              "readonly",
+              "sortable",
+              "compact",
+              "alignRight",
+              "full-text-search"
+            ]
+          }
+        },
+        "filter": {
+          "description": "Type of filter which the field can supply",
+          "type": "string",
+          "enum": [
+            "filter-list-single",
+            "filter-list-multi",
+            "filter-uuid",
+            "filter-string",
+            "filter-number",
+            "filter-date"
+          ]
+        },
+        "generator": {
+          "description": "Crudio data generator to use, and must be wrapped in [ ], e.g. [name]",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "repositoryField": {
+      "description": "Specifies a data field",
+      "oneOf": [
+        {
+          "description": "Template field name to inherit",
+          "type": "string"
+        },
+        {
+          "description": "Fields available to be inherited by any repository",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/field"
+          }
+        }
+      ]
+    }
+  },
+  "properties": {
+    "schemaName": {
+      "type": "string"
+    },
+    "KeyFieldName": {
+      "type": "string"
+    },
+    "NameFields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "TreeParentIdColumnName": {
+      "type": "string"
+    },
+    "TreeParentEntityName": {
+      "type": "string"
+    },
+    "TreeChildEntityName": {
+      "type": "string"
+    },
+    "TreeParentLabelColumnName": {
+      "type": "string"
+    },
+    "TreeParentTypeColumnName": {
+      "type": "string"
+    },
+    "SelectorQuery": {
+      "properties": {
+        "columns": {
+          "type": "string"
+        },
+        "orderby": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        }
+      }
+    },
+    "Joins": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "table1": {
+            "type": "string"
+          },
+          "table2": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "BaseFields": {
+      "description": "Fields inherited by every repository",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/field"
+      }
+    },
+    "TemplateFields": {
+      "description": "Fields available to be inherited by any repository",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/field"
+      }
+    },
+    "RepositoryDefinitions": {
+      "description": "specify the repositories in the datamodel",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/repositoryDefinition"
+      }
+    }
+  }
+}
