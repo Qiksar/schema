@@ -65,7 +65,11 @@
               "value": {
                 "type": "string"
               }
-            }
+            },
+            "required": [
+              "label",
+              "value"
+            ]
           }
         },
         "icon_field": {
@@ -87,7 +91,12 @@
             "value_path": {
               "type": "string"
             }
-          }
+          },
+          "required": [
+            "source_field",
+            "key_path",
+            "value_path"
+          ]
         }
       },
       "required": [
@@ -159,14 +168,10 @@
         "generator": {
           "description": "Crudio data generator to use, and must be wrapped in [ ], e.g. [name]",
           "type": "string"
-        },
-        "age": {
-          "type": "string"
         }
       },
       "required": [
-        "name",
-        "age"
+        "name"
       ]
     },
     "repositoryField": {
@@ -224,7 +229,12 @@
         "purpose": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "columns",
+        "orderby",
+        "purpose"
+      ]
     },
     "Joins": {
       "type": "array",
@@ -240,7 +250,12 @@
           "table2": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "name",
+          "table1",
+          "table2"
+        ]
       }
     },
     "BaseFields": {
