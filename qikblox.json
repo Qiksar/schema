@@ -88,20 +88,15 @@
           "type": "string"
         },
         "editor": {
-          "enum": [
-            "EntityEditText"
-          ]
+          "enum": ["EntityEditText"]
         }
       },
       "additionalProperties": false,
-      "required": [
-        "name",
-        "help"
-      ]
+      "required": ["name", "help"]
     }
   },
   "properties": {
-    "namespace": {
+    "Namespace": {
       "description": "Unique name for the model",
       "type": "string"
     },
@@ -159,11 +154,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "columns",
-        "orderby",
-        "help"
-      ]
+      "required": ["columns", "orderby", "help"]
     },
     "Joins": {
       "type": "array",
@@ -180,11 +171,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "table1",
-          "table2"
-        ]
+        "required": ["name", "table1", "table2"]
       }
     },
     "BaseFields": {
@@ -272,10 +259,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "label",
-                "value"
-              ]
+              "required": ["label", "value"]
             }
           },
           "icon_field": {
@@ -298,20 +282,14 @@
                 "type": "string"
               }
             },
-            "required": [
-              "source_field",
-              "key_path",
-              "value_path"
-            ]
+            "required": ["source_field", "key_path", "value_path"]
           }
         },
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "additionalProperties": false
       },
       "required": [
-        "namespace",
+        "Namespace",
         "schemaName",
         "KeyFieldName",
         "NameFields",
@@ -332,10 +310,7 @@
             "type": "string"
           },
           "type": {
-            "enum": [
-              "single",
-              "multiple"
-            ]
+            "enum": ["single", "multiple"]
           },
           "from": {
             "type": "string"
@@ -350,12 +325,7 @@
             }
           }
         },
-        "required": [
-          "name",
-          "from",
-          "key",
-          "columns"
-        ]
+        "required": ["name", "from", "key", "columns"]
       }
     }
   }
