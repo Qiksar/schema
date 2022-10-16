@@ -202,7 +202,6 @@
       }
     },
     "RepositoryDefinitions": {
-      "$id": "repositoryDefinition",
       "description": "specify the repositories in the datamodel",
       "type": "array",
       "items": {
@@ -323,6 +322,41 @@
         "TreeIconColumn",
         "SelectorQuery"
       ]
+    },
+    "Sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "single",
+              "multiple"
+            ]
+          },
+          "from": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "columns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "from",
+          "key",
+          "columns"
+        ]
+      }
     }
   }
 }
