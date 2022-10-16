@@ -100,7 +100,7 @@
       "description": "Unique name for the model",
       "type": "string"
     },
-    "schemaName": {
+    "SchemaName": {
       "description": "Short name for the model",
       "type": "string"
     },
