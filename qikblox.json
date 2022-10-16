@@ -1,113 +1,13 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
+  "$source": "https://github.com/Qiksar/schema/blob/main/qikblox.json",
+  "$schema": "https://json-schema.org/draft-07/schema",
   "$id": "https://raw.githubusercontent.com/Qiksar/schema/main/qikblox.json",
   "title": "qikblox",
   "description": "Schema definition for QikBlox data models",
   "type": "object",
   "definitions": {
-    "repositoryDefinition": {
-      "description": "specifies an entity, its fields and relationships",
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "Unique repository name",
-          "type": "string"
-        },
-        "help": {
-          "description": "Documentation on repository purpose",
-          "type": "string"
-        },
-        "caption": {
-          "description": "Text to display in user interface",
-          "type": "string"
-        },
-        "path": {
-          "description": "API path if applicable",
-          "type": "string"
-        },
-        "icon": {
-          "description": "Icon to display in user interface",
-          "type": "string"
-        },
-        "inherit": {
-          "description": "a string containing the name of another repository to inherit details from",
-          "type": "string"
-        },
-        "table_entity": {
-          "type": "object",
-          "properties": {
-            "entity": {
-              "type": "string"
-            },
-            "table": {
-              "type": "string"
-            }
-          }
-        },
-        "treeview": {
-          "description": "Indicates if data can be displayed hierarchically",
-          "type": "boolean"
-        },
-        "data_fields": {
-          "description": "specifies aditional fields for the join table",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/definitions/repositoryField"
-            }
-          }
-        },
-        "icon_map": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "label": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "label",
-              "value"
-            ]
-          }
-        },
-        "icon_field": {
-          "type": "string"
-        },
-        "noroute": {
-          "type": "boolean",
-          "default": false
-        },
-        "collapse_fields": {
-          "type": "object",
-          "properties": {
-            "source_field": {
-              "type": "string"
-            },
-            "key_path": {
-              "type": "string"
-            },
-            "value_path": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "source_field",
-            "key_path",
-            "value_path"
-          ]
-        }
-      },
-      "required": [
-        "name"
-      ]
-    },
     "field": {
+      "$id": "field",
       "type": "object",
       "properties": {
         "name": {
@@ -124,7 +24,10 @@
         },
         "flatten": {
           "description": "Specifies fields to import from the specified table",
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "data_type": {
           "description": "field type",
@@ -141,7 +44,6 @@
           "description": "Optional field hints",
           "type": "array",
           "items": {
-            "type": "string",
             "enum": [
               "hidden",
               "ongrid",
@@ -149,7 +51,7 @@
               "unique",
               "required",
               "readonly",
-              "sortable",
+              "sort",
               "compact",
               "alignRight",
               "full-text-search",
@@ -162,7 +64,6 @@
         },
         "filter": {
           "description": "Type of filter which the field can supply",
-          "type": "string",
           "enum": [
             "filter-list-single",
             "filter-list-multi",
@@ -178,150 +79,250 @@
           "type": "string"
         }
       },
+      "additionalProperties": false,
       "required": [
         "name"
       ]
     },
-    "repositoryField": {
-      "description": "Specifies a data field",
-      "oneOf": [
-        {
-          "description": "Template field name to inherit",
-          "type": "string"
-        },
-        {
-          "description": "Fields available to be inherited by any repository",
-          "additionalProperties": {
-            "$ref": "#/definitions/field"
-          }
-        }
-      ]
-    }
-  },
-  "properties": {
-    "namespace": {
-      "description": "Unique name for the model",
-      "type": "string"
-    },
-    "schemaName": {
-      "description": "Short name for the model",
-      "type": "string"
-    },
-    "KeyFieldName": {
-      "description": "Column ID for the primary key applied to all tables",
-      "type": "string"
-    },
-    "NameFields": {
-      "description": "List of column names that can provide tags, keynames and other unique label values",
-      "type": "array",
-      "items": {
+    "properties": {
+      "namespace": {
+        "description": "Unique name for the model",
         "type": "string"
-      }
-    },
-    "ParentIdColumn": {
-      "description": "Name of the column that relates an entity to its parent, which exists in the same table",
-      "type": "string"
-    },
-    "ParentColumn": {
-      "description": "Name of the GraphQL object column which represents the parent entity",
-      "type": "string"
-    },
-    "ChildrenColumn": {
-      "description": "Name of the GraphQL array which represents the array of child entities",
-      "type": "string"
-    },
-    "TreeLabelColumn": {
-      "description": "Name of the column which provides the label for a tree node",
-      "type": "string"
-    },
-    "TreeIconColumn": {
-      "description": "Name of the column which provides the icon for a tree node",
-      "type": "string"
-    },
-    "SelectorQuery": {
-      "description": "Describes how to transform an entity into a format for dropdown selection",
-      "properties": {
-        "columns": {
-          "description": "Columns to extract from source entities",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "orderby": {
-          "description": "Column to sort by",
-          "type": "string"
-        },
-        "help": {
-          "description": "Description of where the selectr might be used",
+      },
+      "schemaName": {
+        "description": "Short name for the model",
+        "type": "string"
+      },
+      "KeyFieldName": {
+        "description": "Column ID for the primary key applied to all tables",
+        "type": "string"
+      },
+      "NameFields": {
+        "description": "List of column names that can provide tags, keynames and other unique label values",
+        "type": "array",
+        "items": {
           "type": "string"
         }
       },
-      "required": [
-        "columns",
-        "orderby",
-        "help"
-      ]
-    },
-    "Joins": {
-      "type": "array",
-      "items": {
-        "type": "object",
+      "ParentIdColumn": {
+        "description": "Name of the column that relates an entity to its parent, which exists in the same table",
+        "type": "string"
+      },
+      "ParentColumn": {
+        "description": "Name of the GraphQL object column which represents the parent entity",
+        "type": "string"
+      },
+      "ChildrenColumn": {
+        "description": "Name of the GraphQL array which represents the array of child entities",
+        "type": "string"
+      },
+      "TreeLabelColumn": {
+        "description": "Name of the column which provides the label for a tree node",
+        "type": "string"
+      },
+      "TreeIconColumn": {
+        "description": "Name of the column which provides the icon for a tree node",
+        "type": "string"
+      },
+      "SelectorQuery": {
+        "description": "Describes how to transform an entity into a format for dropdown selection",
         "properties": {
-          "name": {
+          "columns": {
+            "description": "Columns to extract from source entities",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "orderby": {
+            "description": "Column to sort by",
             "type": "string"
           },
-          "table1": {
-            "type": "string"
-          },
-          "table2": {
+          "help": {
+            "description": "Description of where the selectr might be used",
             "type": "string"
           }
         },
         "required": [
-          "name",
-          "table1",
-          "table2"
+          "columns",
+          "orderby",
+          "help"
         ]
-      }
-    },
-    "BaseFields": {
-      "description": "Fields inherited by all repositories",
-      "type": "array",
-      "items": {
-        "properties": {
-          "additionalProperties": {
-            "$ref": "#/definitions/field"
+      },
+      "Joins": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "table1": {
+              "type": "string"
+            },
+            "table2": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "table1",
+            "table2"
+          ]
+        }
+      },
+      "BaseFields": {
+        "description": "Fields inherited by all repositories",
+        "type": "array",
+        "items": {
+          "properties": {
+            "additionalProperties": {
+              "$ref": "#/definitions/field"
+            }
           }
         }
-      }
-    },
-    "TemplateFields": {
-      "description": "Fields available to be inherited by any repository",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "additionalProperties": {
-            "$ref": "#/definitions/field"
+      },
+      "TemplateFields": {
+        "description": "Fields available to be inherited by any repository",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "additionalProperties": {
+              "$ref": "#/definitions/field"
+            }
           }
         }
-      }
-    },
-    "RepositoryDefinitions": {
-      "description": "specify the repositories in the datamodel",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "additionalProperties": {
-            "$ref": "#/definitions/repositoryDefinition"
-          }
+      },
+      "RepositoryDefinitions": {
+        "$id": "repositoryDefinition",
+        "description": "specify the repositories in the datamodel",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "Unique repository name",
+              "type": "string"
+            },
+            "help": {
+              "description": "Documentation on repository purpose",
+              "type": "string"
+            },
+            "caption": {
+              "description": "Text to display in user interface",
+              "type": "string"
+            },
+            "path": {
+              "description": "API path if applicable",
+              "type": "string"
+            },
+            "icon": {
+              "description": "Icon to display in user interface",
+              "type": "string"
+            },
+            "inherit": {
+              "description": "a string containing the name of another repository to inherit details from",
+              "type": "string"
+            },
+            "table_entity": {
+              "type": "object",
+              "properties": {
+                "entity": {
+                  "type": "string"
+                },
+                "table": {
+                  "type": "string"
+                }
+              }
+            },
+            "treeview": {
+              "description": "Indicates if data can be displayed hierarchically",
+              "type": "boolean"
+            },
+            "data_fields": {
+              "description": "specifies aditional fields for the join table",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "oneOf": [
+                  {
+                    "description": "Template field name to inherit",
+                    "type": "string"
+                  },
+                  {
+                    "description": "Fields available to be inherited by any repository",
+                    "type": "object",
+                    "additionalProperties": {
+                      "$ref": "#/definitions/field"
+                    }
+                  }
+                ]
+              }
+            },
+            "icon_map": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "label",
+                  "value"
+                ]
+              }
+            },
+            "icon_field": {
+              "type": "string"
+            },
+            "noroute": {
+              "type": "boolean",
+              "default": false
+            },
+            "collapse_fields": {
+              "type": "object",
+              "properties": {
+                "source_field": {
+                  "type": "string"
+                },
+                "key_path": {
+                  "type": "string"
+                },
+                "value_path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "source_field",
+                "key_path",
+                "value_path"
+              ]
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
         }
       }
     }
   },
   "required": [
-    "namespace","schemaName", "KeyFieldName","NameFields","ParentIdColumn","ParentColumn","ChildrenColumn","TreeLabelColumn","TreeIconColumn","SelectorQuery"
+    "namespace",
+    "schemaName",
+    "KeyFieldName",
+    "NameFields",
+    "ParentIdColumn",
+    "ParentColumn",
+    "ChildrenColumn",
+    "TreeLabelColumn",
+    "TreeIconColumn",
+    "SelectorQuery"
   ]
 }
