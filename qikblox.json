@@ -152,7 +152,11 @@
               "sortable",
               "compact",
               "alignRight",
-              "full-text-search"
+              "full-text-search",
+              "writeonce",
+              "lowercase",
+              "uppercase",
+              "titlecase"
             ]
           }
         },
@@ -256,7 +260,7 @@
       "required": [
         "columns",
         "orderby",
-        "purpose"
+        "help"
       ]
     },
     "Joins": {
@@ -316,5 +320,8 @@
         }
       }
     }
-  }
+  },
+  "required": [
+    "namespace","schemaName", "KeyFieldName","NameFields","ParentIdColumn","ParentColumn","ChildrenColumn","TreeLabelColumn","TreeIconColumn","SelectorQuery"
+  ]
 }
