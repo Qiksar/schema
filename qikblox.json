@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://raw.githubusercontent.com/Qiksar/schema/main/qikblox.json",
-  "title": "Qikblox",
-  "description": "Schema definition for Qikblox data models",
+  "title": "qikblox",
+  "description": "Schema definition for QikBlox data models",
   "type": "object",
   "definitions": {
     "repositoryDefinition": {
@@ -11,6 +11,10 @@
       "properties": {
         "name": {
           "description": "Unique repository name",
+          "type": "string"
+        },
+        "help": {
+          "description": "Documentation on repository purpose",
           "type": "string"
         },
         "caption": {
@@ -29,7 +33,7 @@
           "description": "a string containing the name of another repository to inherit details from",
           "type": "string"
         },
-        "dataType": {
+        "table_entity": {
           "type": "object",
           "properties": {
             "entity": {
@@ -44,7 +48,7 @@
           "description": "Indicates if data can be displayed hierarchically",
           "type": "boolean"
         },
-        "gqlFields": {
+        "data_fields": {
           "description": "specifies aditional fields for the join table",
           "type": "array",
           "items": {
@@ -191,42 +195,61 @@
     }
   },
   "properties": {
+    "namespace": {
+      "description": "Unique name for the model",
+      "type": "string"
+    },
     "schemaName": {
+      "description": "Short name for the model",
       "type": "string"
     },
     "KeyFieldName": {
+      "description": "Column ID for the primary key applied to all tables",
       "type": "string"
     },
     "NameFields": {
+      "description": "List of column names that can provide tags, keynames and other unique label values",
       "type": "array",
       "items": {
         "type": "string"
       }
     },
-    "TreeParentIdColumnName": {
+    "ParentIdColumn": {
+      "description": "Name of the column that relates an entity to its parent, which exists in the same table",
       "type": "string"
     },
-    "TreeParentEntityName": {
+    "ParentColumn": {
+      "description": "Name of the GraphQL object column which represents the parent entity",
       "type": "string"
     },
-    "TreeChildEntityName": {
+    "ChildrenColumn": {
+      "description": "Name of the GraphQL array which represents the array of child entities",
       "type": "string"
     },
-    "TreeParentLabelColumnName": {
+    "TreeLabelColumn": {
+      "description": "Name of the column which provides the label for a tree node",
       "type": "string"
     },
-    "TreeParentTypeColumnName": {
+    "TreeIconColumn": {
+      "description": "Name of the column which provides the icon for a tree node",
       "type": "string"
     },
     "SelectorQuery": {
+      "description": "Describes how to transform an entity into a format for dropdown selection",
       "properties": {
         "columns": {
-          "type": "string"
+          "description": "Columns to extract from source entities",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "orderby": {
+          "description": "Column to sort by",
           "type": "string"
         },
-        "purpose": {
+        "help": {
+          "description": "Description of where the selectr might be used",
           "type": "string"
         }
       },
