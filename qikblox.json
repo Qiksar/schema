@@ -361,18 +361,31 @@
     "Generators": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "values": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
           },
-          "values": {
-            "type": "string"
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "values": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "values"
+            ]
           }
-        },
-        "required": [
-          "name",
-          "values"
         ]
       }
     },
@@ -387,21 +400,13 @@
           "scripts": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "values": {
-                  "type": "string"
-                }
-              }
+              "type": "string"
             }
           }
         },
         "required": [
-          "name",
-          "values"
+          "entity",
+          "scripts"
         ]
       }
     }
