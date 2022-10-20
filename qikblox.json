@@ -101,6 +101,14 @@
     }
   },
   "properties": {
+    "_id": {
+      "description": "Unique database ID for the model",
+      "type": "string"
+    },
+    "help": {
+      "description": "Documentation for the model",
+      "type": "string"
+    },
     "Namespace": {
       "description": "Unique name for the model",
       "type": "string"
@@ -410,5 +418,9 @@
         ]
       }
     }
-  }
+  },
+  "required": [
+    "SchemaName",
+    "Namespace"
+  ]
 }
