@@ -1,426 +1,427 @@
 {
-"$source": "https://github.com/Qiksar/schema/blob/main/qikblox.json",
-"$schema": "https://json-schema.org/draft-07/schema",
-"$id": "https://raw.githubusercontent.com/Qiksar/schema/main/qikblox.json",
-"title": "qikblox",
-"description": "Schema definition for QikBlox data models",
-"type": "object",
-"definitions": {
-  "field": {
-    "type": "object",
-    "description": "fully defined data field",
-    "properties": {
-      "name": {
-        "description": "Unique fieldname",
-        "type": "string"
-      },
-      "help": {
-        "description": "Documentation to help users understand the purpose of the field",
-        "type": "string"
-      },
-      "caption": {
-        "type": "string"
-      },
-      "table": {
-        "description": "Name of the underlying data source or database table",
-        "type": "string"
-      },
-      "join": {
-        "type": "string"
-      },
-      "flatten": {
-        "description": "Specifies fields to import from the specified table",
-        "type": "array",
-        "items": {
+  "$source": "https://github.com/Qiksar/schema/blob/main/qikblox.json",
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://raw.githubusercontent.com/Qiksar/schema/main/qikblox.json",
+  "title": "qikblox",
+  "description": "Schema definition for QikBlox data models",
+  "type": "object",
+  "definitions": {
+    "field": {
+      "type": "object",
+      "description": "fully defined data field",
+      "properties": {
+        "name": {
+          "description": "Unique fieldname",
           "type": "string"
-        }
-      },
-      "data_type": {
-        "description": "field type",
-        "enum": [
-          "uuid",
-          "boolean",
-          "string",
-          "integer",
-          "number",
-          "timestamp",
-          "json",
-          "object",
-          "array"
-        ]
-      },
-      "options": {
-        "description": "Optional field hints",
-        "type": "array",
-        "items": {
+        },
+        "help": {
+          "description": "Documentation to help users understand the purpose of the field",
+          "type": "string"
+        },
+        "caption": {
+          "type": "string"
+        },
+        "table": {
+          "description": "Name of the underlying data source or database table",
+          "type": "string"
+        },
+        "join": {
+          "type": "string"
+        },
+        "flatten": {
+          "description": "Specifies fields to import from the specified table",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "data_type": {
+          "description": "field type",
           "enum": [
-            "hidden",
-            "ongrid",
-            "ontree",
-            "unique",
-            "required",
-            "readonly",
-            "sort",
-            "compact",
-            "alignRight",
-            "full-text-search",
-            "writeonce",
-            "lowercase",
-            "uppercase",
-            "titlecase"
+            "uuid",
+            "boolean",
+            "string",
+            "integer",
+            "number",
+            "timestamp",
+            "json",
+            "object",
+            "array"
+          ]
+        },
+        "options": {
+          "description": "Optional field hints",
+          "type": "array",
+          "items": {
+            "enum": [
+              "hidden",
+              "ongrid",
+              "ontree",
+              "unique",
+              "required",
+              "readonly",
+              "sort",
+              "compact",
+              "alignRight",
+              "full-text-search",
+              "writeonce",
+              "lowercase",
+              "uppercase",
+              "titlecase"
+            ]
+          }
+        },
+        "filter": {
+          "description": "Type of filter which the field can supply",
+          "enum": [
+            "filter-list-single",
+            "filter-list-multi",
+            "filter-uuid",
+            "filter-string",
+            "filter-boolean",
+            "filter-number",
+            "filter-date"
+          ]
+        },
+        "generator": {
+          "description": "Crudio data generator to use, and must be wrapped in [ ], e.g. [name]",
+          "type": "string"
+        },
+        "editor": {
+          "enum": [
+            "EntityEditText"
           ]
         }
       },
-      "filter": {
-        "description": "Type of filter which the field can supply",
-        "enum": [
-          "filter-list-single",
-          "filter-list-multi",
-          "filter-uuid",
-          "filter-string",
-          "filter-boolean",
-          "filter-number",
-          "filter-date"
-        ]
-      },
-      "generator": {
-        "description": "Crudio data generator to use, and must be wrapped in [ ], e.g. [name]",
-        "type": "string"
-      },
-      "editor": {
-        "enum": [
-          "EntityEditText"
-        ]
-      }
-    },
-    "additionalProperties": false,
-    "required": [
-      "name",
-      "help"
-    ]
-  },
-  "data_fields": {
-    "type": "array",
-    "items": {
-      "oneOf": [
-        {
-          "description": "specifies a template field to use",
-          "type": "string"
-        },
-        {
-          "$ref": "#/definitions/field"
-        }
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "help"
       ]
+    },
+    "data_fields": {
+      "description": "a list fields, which can include pre-defined template fields",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "description": "specifies a template field to use",
+            "type": "string"
+          },
+          {
+            "$ref": "#/definitions/field"
+          }
+        ]
+      }
     }
-  }
-},
-"properties": {
-  "_id": {
-    "description": "Unique database ID for the model",
-    "type": "string"
   },
-  "help": {
-    "description": "Documentation for the model",
-    "type": "string"
-  },
-  "Namespace": {
-    "description": "Unique name for the model",
-    "type": "string"
-  },
-  "SchemaName": {
-    "description": "Short name for the model",
-    "type": "string"
-  },
-  "KeyFieldName": {
-    "description": "Column ID for the primary key applied to all tables",
-    "type": "string"
-  },
-  "NameFields": {
-    "description": "List of column names that can provide tags, keynames and other unique label values",
-    "type": "array",
-    "items": {
+  "properties": {
+    "_id": {
+      "description": "Unique database ID for the model",
       "type": "string"
-    }
-  },
-  "ParentIdColumn": {
-    "description": "Name of the column that relates an entity to its parent, which exists in the same table",
-    "type": "string"
-  },
-  "ParentColumn": {
-    "description": "Name of the GraphQL object column which represents the parent entity",
-    "type": "string"
-  },
-  "ChildrenColumn": {
-    "description": "Name of the GraphQL array which represents the array of child entities",
-    "type": "string"
-  },
-  "TreeLabelColumn": {
-    "description": "Name of the column which provides the label for a tree node",
-    "type": "string"
-  },
-  "TreeIconColumn": {
-    "description": "Name of the column which provides the icon for a tree node",
-    "type": "string"
-  },
-  "SelectorQuery": {
-    "description": "Describes how to transform an entity into a format for dropdown selection",
-    "properties": {
-      "columns": {
-        "description": "Columns to extract from source entities",
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      },
-      "orderby": {
-        "description": "Column to sort by",
-        "type": "string"
-      },
-      "help": {
-        "description": "Description of where the selectr might be used",
+    },
+    "help": {
+      "description": "Documentation for the model",
+      "type": "string"
+    },
+    "Namespace": {
+      "description": "Unique name for the model",
+      "type": "string"
+    },
+    "SchemaName": {
+      "description": "Short name for the model",
+      "type": "string"
+    },
+    "KeyFieldName": {
+      "description": "Column ID for the primary key applied to all tables",
+      "type": "string"
+    },
+    "NameFields": {
+      "description": "List of column names that can provide tags, keynames and other unique label values",
+      "type": "array",
+      "items": {
         "type": "string"
       }
     },
-    "required": [
-      "columns",
-      "orderby",
-      "help"
-    ]
-  },
-  "Joins": {
-    "type": "array",
-    "items": {
-      "type": "object",
+    "ParentIdColumn": {
+      "description": "Name of the column that relates an entity to its parent, which exists in the same table",
+      "type": "string"
+    },
+    "ParentColumn": {
+      "description": "Name of the GraphQL object column which represents the parent entity",
+      "type": "string"
+    },
+    "ChildrenColumn": {
+      "description": "Name of the GraphQL array which represents the array of child entities",
+      "type": "string"
+    },
+    "TreeLabelColumn": {
+      "description": "Name of the column which provides the label for a tree node",
+      "type": "string"
+    },
+    "TreeIconColumn": {
+      "description": "Name of the column which provides the icon for a tree node",
+      "type": "string"
+    },
+    "SelectorQuery": {
+      "description": "Describes how to transform an entity into a format for dropdown selection",
       "properties": {
-        "name": {
+        "columns": {
+          "description": "Columns to extract from source entities",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "orderby": {
+          "description": "Column to sort by",
           "type": "string"
         },
-        "table1": {
-          "type": "string"
-        },
-        "table2": {
+        "help": {
+          "description": "Description of where the selectr might be used",
           "type": "string"
         }
       },
       "required": [
-        "name",
-        "table1",
-        "table2"
+        "columns",
+        "orderby",
+        "help"
       ]
-    }
-  },
-  "TemplateFields": {
-    "description": "Fields available to be inherited by any repository",
-    "type": "array",
-    "items": {
-      "$ref": "#/definitions/field"
-    }
-  },
-  "BaseFields": {
-    "description": "Fields inherited by all repositories, which can include named template fields",
-    "$ref": "#/definitions/data_fields"
-  },
-  "RepositoryDefinitions": {
-    "description": "specify the repositories in the datamodel",
-    "type": "array",
-    "items": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "Unique repository name",
-          "type": "string"
-        },
-        "help": {
-          "description": "Documentation on repository purpose",
-          "type": "string"
-        },
-        "caption": {
-          "description": "Text to display in user interface",
-          "type": "string"
-        },
-        "path": {
-          "description": "API path if applicable",
-          "type": "string"
-        },
-        "icon": {
-          "description": "Icon to display in user interface",
-          "type": "string"
-        },
-        "inherit": {
-          "description": "a string containing the name of another repository to inherit details from",
-          "type": "string"
-        },
-        "table_entity": {
-          "type": "object",
-          "properties": {
-            "entity": {
-              "type": "string"
-            },
-            "table": {
-              "type": "string"
-            }
+    },
+    "Joins": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "table1": {
+            "type": "string"
+          },
+          "table2": {
+            "type": "string"
           }
         },
-        "treeview": {
-          "description": "Indicates if data can be displayed hierarchically",
-          "type": "boolean"
-        },
-        "data_fields": {
-          "$ref": "#/definitions/data_fields"
-        },
-        "icon_map": {
-          "type": "array",
-          "items": {
+        "required": [
+          "name",
+          "table1",
+          "table2"
+        ]
+      }
+    },
+    "TemplateFields": {
+      "description": "Fields available to be inherited by any repository",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/field"
+      }
+    },
+    "BaseFields": {
+      "description": "Fields inherited by all repositories, which can include named template fields",
+      "$ref": "#/definitions/data_fields"
+    },
+    "RepositoryDefinitions": {
+      "description": "specify the repositories in the datamodel",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Unique repository name",
+            "type": "string"
+          },
+          "help": {
+            "description": "Documentation on repository purpose",
+            "type": "string"
+          },
+          "caption": {
+            "description": "Text to display in user interface",
+            "type": "string"
+          },
+          "path": {
+            "description": "API path if applicable",
+            "type": "string"
+          },
+          "icon": {
+            "description": "Icon to display in user interface",
+            "type": "string"
+          },
+          "inherit": {
+            "description": "a string containing the name of another repository to inherit details from",
+            "type": "string"
+          },
+          "table_entity": {
             "type": "object",
             "properties": {
-              "label": {
+              "entity": {
                 "type": "string"
               },
-              "value": {
+              "table": {
+                "type": "string"
+              }
+            }
+          },
+          "treeview": {
+            "description": "Indicates if data can be displayed hierarchically",
+            "type": "boolean"
+          },
+          "data_fields": {
+            "$ref": "#/definitions/data_fields"
+          },
+          "icon_map": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "label",
+                "value"
+              ]
+            }
+          },
+          "icon_field": {
+            "type": "string"
+          },
+          "noroute": {
+            "type": "boolean",
+            "default": false
+          },
+          "collapse_fields": {
+            "type": "object",
+            "properties": {
+              "source_field": {
+                "type": "string"
+              },
+              "key_path": {
+                "type": "string"
+              },
+              "value_path": {
                 "type": "string"
               }
             },
             "required": [
-              "label",
-              "value"
+              "source_field",
+              "key_path",
+              "value_path"
             ]
           }
         },
-        "icon_field": {
-          "type": "string"
-        },
-        "noroute": {
-          "type": "boolean",
-          "default": false
-        },
-        "collapse_fields": {
-          "type": "object",
-          "properties": {
-            "source_field": {
-              "type": "string"
-            },
-            "key_path": {
-              "type": "string"
-            },
-            "value_path": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "source_field",
-            "key_path",
-            "value_path"
-          ]
-        }
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
       },
       "required": [
-        "name"
-      ],
-      "additionalProperties": false
+        "Namespace",
+        "schemaName",
+        "KeyFieldName",
+        "NameFields",
+        "ParentIdColumn",
+        "ParentColumn",
+        "ChildrenColumn",
+        "TreeLabelColumn",
+        "TreeIconColumn",
+        "SelectorQuery"
+      ]
     },
-    "required": [
-      "Namespace",
-      "schemaName",
-      "KeyFieldName",
-      "NameFields",
-      "ParentIdColumn",
-      "ParentColumn",
-      "ChildrenColumn",
-      "TreeLabelColumn",
-      "TreeIconColumn",
-      "SelectorQuery"
-    ]
-  },
-  "Sources": {
-    "type": "array",
-    "items": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "type": {
-          "enum": [
-            "single",
-            "multiple"
-          ]
-        },
-        "from": {
-          "type": "string"
-        },
-        "key": {
-          "type": "string"
-        },
-        "columns": {
-          "type": "array",
-          "items": {
+    "Sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
             "type": "string"
-          }
-        }
-      },
-      "required": [
-        "name",
-        "from",
-        "key",
-        "columns"
-      ]
-    }
-  },
-  "Generators": {
-    "type": "array",
-    "items": {
-      "oneOf": [
-        {
-          "type": "object",
-          "properties": {
-            "values": {
-              "type": "object",
-              "additionalProperties": true
+          },
+          "type": {
+            "enum": [
+              "single",
+              "multiple"
+            ]
+          },
+          "from": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "columns": {
+            "type": "array",
+            "items": {
+              "type": "string"
             }
           }
         },
-        {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string"
-            },
-            "values": {
-              "type": "string"
+        "required": [
+          "name",
+          "from",
+          "key",
+          "columns"
+        ]
+      }
+    },
+    "Generators": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "values": {
+                "type": "object",
+                "additionalProperties": true
+              }
             }
           },
-          "required": [
-            "name",
-            "values"
-          ]
-        }
-      ]
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "values": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "values"
+            ]
+          }
+        ]
+      }
+    },
+    "Triggers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity": {
+            "type": "string"
+          },
+          "scripts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "entity",
+          "scripts"
+        ]
+      }
     }
   },
-  "Triggers": {
-    "type": "array",
-    "items": {
-      "type": "object",
-      "properties": {
-        "entity": {
-          "type": "string"
-        },
-        "scripts": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "required": [
-        "entity",
-        "scripts"
-      ]
-    }
-  }
-},
-"required": [
-  "SchemaName",
-  "Namespace"
-]
+  "required": [
+    "SchemaName",
+    "Namespace"
+  ]
 }
