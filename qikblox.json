@@ -11,7 +11,7 @@
       "description": "fully defined data field",
       "properties": {
         "name": {
-          "description": "Unique fieldname",
+          "description": "unique fieldname",
           "type": "string"
         },
         "help": {
@@ -19,17 +19,19 @@
           "type": "string"
         },
         "caption": {
+          "description": "label to use in the UI",
           "type": "string"
         },
         "table": {
-          "description": "Name of the underlying data source or database table",
+          "description": "name of a table from which flattened fields can be sourced",
           "type": "string"
         },
         "join": {
+          "description": "name of a many to many join",
           "type": "string"
         },
         "flatten": {
-          "description": "Specifies fields to import from the specified table",
+          "description": "specifies fields to import from the specified table",
           "type": "array",
           "items": {
             "type": "string"
@@ -50,7 +52,7 @@
           ]
         },
         "options": {
-          "description": "Optional field hints",
+          "description": "optional field behaviours",
           "type": "array",
           "items": {
             "enum": [
@@ -72,7 +74,7 @@
           }
         },
         "filter": {
-          "description": "Type of filter which the field can supply",
+          "description": "type of filter which the field can supply",
           "enum": [
             "filter-list-single",
             "filter-list-multi",
@@ -84,10 +86,11 @@
           ]
         },
         "generator": {
-          "description": "Crudio data generator to use, and must be wrapped in [ ], e.g. [name]",
+          "description": "data generator to use, and must be wrapped in [ ], e.g. [name]",
           "type": "string"
         },
         "editor": {
+          "description": "preferred UI editor",
           "enum": [
             "EntityEditText"
           ]
@@ -109,68 +112,68 @@
   },
   "properties": {
     "_id": {
-      "description": "Unique database ID for the model",
+      "description": "unique database ID for the model",
       "type": "string"
     },
     "help": {
-      "description": "Documentation for the model",
+      "description": "documentation for the model",
       "type": "string"
     },
     "Namespace": {
-      "description": "Unique name for the model",
+      "description": "unique name for the model",
       "type": "string"
     },
     "SchemaName": {
-      "description": "Short name for the model",
+      "description": "short name for the model",
       "type": "string"
     },
     "KeyFieldName": {
-      "description": "Column ID for the primary key applied to all tables",
+      "description": "column ID for the primary key applied to all tables",
       "type": "string"
     },
     "NameFields": {
-      "description": "List of column names that can provide tags, keynames and other unique label values",
+      "description": "list of column names that can provide tags, keynames and other unique label values",
       "type": "array",
       "items": {
         "type": "string"
       }
     },
     "ParentIdColumn": {
-      "description": "Name of the column that relates an entity to its parent, which exists in the same table",
+      "description": "name of the column that relates an entity to its parent, which exists in the same table",
       "type": "string"
     },
     "ParentColumn": {
-      "description": "Name of the GraphQL object column which represents the parent entity",
+      "description": "name of the GraphQL object column which represents the parent entity",
       "type": "string"
     },
     "ChildrenColumn": {
-      "description": "Name of the GraphQL array which represents the array of child entities",
+      "description": "name of the GraphQL array which represents the array of child entities",
       "type": "string"
     },
     "TreeLabelColumn": {
-      "description": "Name of the column which provides the label for a tree node",
+      "description": "name of the column which provides the label for a tree node",
       "type": "string"
     },
     "TreeIconColumn": {
-      "description": "Name of the column which provides the icon for a tree node",
+      "description": "name of the column which provides the icon for a tree node",
       "type": "string"
     },
     "SelectorQuery": {
-      "description": "Describes how to transform an entity into a format for dropdown selection",
+      "description": "describes how to transform an entity into a format for dropdown selection",
       "properties": {
         "columns": {
-          "description": "Columns to extract from source entities",
+          "description": "columns to extract from source entities",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "orderby": {
-          "description": "Column to sort by",
+          "description": "column to sort by",
           "type": "string"
         },
         "help": {
-          "description": "Description of where the selectr might be used",
+          "description": "description of where the selectr might be used",
           "type": "string"
         }
       },
@@ -181,17 +184,21 @@
       ]
     },
     "Joins": {
+      "description": "Many to many joins",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "name": {
+            "description": "name of the join",
             "type": "string"
           },
           "table1": {
+            "description": "first table in the join",
             "type": "string"
           },
           "table2": {
+            "description": "second table in the join",
             "type": "string"
           }
         },
@@ -203,14 +210,14 @@
       }
     },
     "TemplateFields": {
-      "description": "Fields available to be inherited by any repository",
+      "description": "fields available to be inherited by any repository",
       "type": "array",
       "items": {
         "$ref": "#/definitions/field"
       }
     },
     "BaseFields": {
-      "description": "Fields inherited by all repositories, which can include named template fields",
+      "description": "fields inherited by all repositories, which can include named template fields",
       "type": "array",
       "items": {
         "type": "string"
@@ -223,15 +230,15 @@
         "type": "object",
         "properties": {
           "name": {
-            "description": "Unique repository name",
+            "description": "unique repository name",
             "type": "string"
           },
           "help": {
-            "description": "Documentation on repository purpose",
+            "description": "documentation on repository purpose",
             "type": "string"
           },
           "caption": {
-            "description": "Text to display in user interface",
+            "description": "text to display in user interface",
             "type": "string"
           },
           "path": {
@@ -239,7 +246,7 @@
             "type": "string"
           },
           "icon": {
-            "description": "Icon to display in user interface",
+            "description": "icon to display in user interface",
             "type": "string"
           },
           "inherit": {
@@ -261,24 +268,35 @@
             "description": "Indicates if data can be displayed hierarchically",
             "type": "boolean"
           },
-          "template_fields":{
-            "type":"array",
+          "template_fields": {
+            "description": "fields to import from the list of template_fields",
+            "type": "array",
             "items": {
-              "type":"string"
+              "type": "string"
             }
           },
           "data_fields": {
             "$ref": "#/definitions/data_fields"
           },
+          "field_order": {
+            "description": "order in which to display fields",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "icon_map": {
+            "description": "specify the icon (value) to use for each label value",
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
                 "label": {
+                  "description": "unique key used as a lookup to get the icon to use",
                   "type": "string"
                 },
                 "value": {
+                  "description": "the name of the icon",
                   "type": "string"
                 }
               },
@@ -289,22 +307,28 @@
             }
           },
           "icon_field": {
+            "description": "name of the field which informs the name of the preferred icon",
             "type": "string"
           },
           "noroute": {
+            "description": "exclude the repository from automatic route generation",
             "type": "boolean",
             "default": false
           },
           "collapse_fields": {
+            "description": "fields to import from a deeply nested graph object",
             "type": "object",
             "properties": {
               "source_field": {
+                "description": "path to graph object from which to source data",
                 "type": "string"
               },
               "key_path": {
+                "description": "path from which to extract the key",
                 "type": "string"
               },
               "value_path": {
+                "description": "path from which to extract the value",
                 "type": "string"
               }
             },
@@ -334,11 +358,13 @@
       ]
     },
     "Sources": {
+      "description": "data sources available from within this graph",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "name": {
+            "description": "unique name",
             "type": "string"
           },
           "type": {
@@ -348,12 +374,15 @@
             ]
           },
           "from": {
+            "description": "path to source object",
             "type": "string"
           },
           "key": {
+            "description": "name of the key attribute in the source object",
             "type": "string"
           },
           "columns": {
+            "description": "list of columns to extract from the source object",
             "type": "array",
             "items": {
               "type": "string"
@@ -369,6 +398,7 @@
       }
     },
     "Generators": {
+      "description": "data generators",
       "type": "array",
       "items": {
         "oneOf": [
@@ -376,18 +406,22 @@
             "type": "object",
             "properties": {
               "values": {
+                "description": "object data structure which is interpreted by the data generator",
                 "type": "object",
                 "additionalProperties": true
               }
             }
           },
           {
+            "description": "key value pair of data generator values which can be randomly selected",
             "type": "object",
             "properties": {
               "name": {
+                "description": "unique name",
                 "type": "string"
               },
               "values": {
+                "description": "semicolon separated values",
                 "type": "string"
               }
             },
@@ -400,14 +434,17 @@
       }
     },
     "Triggers": {
+      "description": "object graph builders triggered when a specified entity is created",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "entity": {
+            "description": "name of the entity which will trigger the execution of the scripts",
             "type": "string"
           },
           "scripts": {
+            "description": "list of actions to execute sequentially",
             "type": "array",
             "items": {
               "type": "string"
