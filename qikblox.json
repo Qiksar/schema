@@ -103,15 +103,7 @@
       "description": "a list fields, which can include pre-defined template fields",
       "type": "array",
       "items": {
-        "oneOf": [
-          {
-            "description": "specifies a template field to use",
-            "type": "string"
-          },
-          {
-            "$ref": "#/definitions/field"
-          }
-        ]
+        "$ref": "#/definitions/field"
       }
     }
   },
@@ -219,7 +211,10 @@
     },
     "BaseFields": {
       "description": "Fields inherited by all repositories, which can include named template fields",
-      "$ref": "#/definitions/data_fields"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "RepositoryDefinitions": {
       "description": "specify the repositories in the datamodel",
@@ -265,6 +260,12 @@
           "treeview": {
             "description": "Indicates if data can be displayed hierarchically",
             "type": "boolean"
+          },
+          "template_fields":{
+            "type":"array",
+            "items": {
+              "type":"string"
+            }
           },
           "data_fields": {
             "$ref": "#/definitions/data_fields"
