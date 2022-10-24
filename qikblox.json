@@ -91,16 +91,11 @@
         },
         "editor": {
           "description": "preferred UI editor",
-          "enum": [
-            "EntityEditText"
-          ]
+          "enum": ["EntityEditText"]
         }
       },
       "additionalProperties": false,
-      "required": [
-        "name",
-        "help"
-      ]
+      "required": ["name", "help"]
     },
     "data_fields": {
       "description": "a list fields, which can include pre-defined template fields",
@@ -177,11 +172,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "columns",
-        "orderby",
-        "help"
-      ]
+      "required": ["columns", "orderby", "help"]
     },
     "Joins": {
       "description": "Many to many joins",
@@ -202,11 +193,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "table1",
-          "table2"
-        ]
+        "required": ["name", "table1", "table2"]
       }
     },
     "TemplateFields": {
@@ -300,10 +287,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "label",
-                "value"
-              ]
+              "required": ["label", "value"]
             }
           },
           "icon_field": {
@@ -332,30 +316,12 @@
                 "type": "string"
               }
             },
-            "required": [
-              "source_field",
-              "key_path",
-              "value_path"
-            ]
+            "required": ["source_field", "key_path", "value_path"]
           }
         },
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "additionalProperties": false
-      },
-      "required": [
-        "Namespace",
-        "schemaName",
-        "KeyFieldName",
-        "NameFields",
-        "ParentIdColumn",
-        "ParentColumn",
-        "ChildrenColumn",
-        "TreeLabelColumn",
-        "TreeIconColumn",
-        "SelectorQuery"
-      ]
+      }
     },
     "Sources": {
       "description": "data sources available from within this graph",
@@ -368,10 +334,7 @@
             "type": "string"
           },
           "type": {
-            "enum": [
-              "single",
-              "multiple"
-            ]
+            "enum": ["single", "multiple"]
           },
           "from": {
             "description": "path to source object",
@@ -389,12 +352,7 @@
             }
           }
         },
-        "required": [
-          "name",
-          "from",
-          "key",
-          "columns"
-        ]
+        "required": ["name", "from", "key", "columns"]
       }
     },
     "Generators": {
@@ -425,10 +383,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "name",
-              "values"
-            ]
+            "required": ["name", "values"]
           }
         ]
       }
@@ -451,15 +406,9 @@
             }
           }
         },
-        "required": [
-          "entity",
-          "scripts"
-        ]
+        "required": ["entity", "scripts"]
       }
     }
   },
-  "required": [
-    "SchemaName",
-    "Namespace"
-  ]
+  "required": ["SchemaName", "Namespace"]
 }
