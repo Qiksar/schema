@@ -10,34 +10,34 @@
       "type": "object",
       "description": "fully defined data field",
       "properties": {
-        "name": {
+        "Name": {
           "description": "unique fieldname",
           "type": "string"
         },
-        "help": {
+        "Help": {
           "description": "Documentation to help users understand the purpose of the field",
           "type": "string"
         },
-        "caption": {
+        "Caption": {
           "description": "label to use in the UI",
           "type": "string"
         },
-        "table": {
+        "Table": {
           "description": "name of a table from which flattened fields can be sourced",
           "type": "string"
         },
-        "join": {
+        "Join": {
           "description": "name of a many to many join",
           "type": "string"
         },
-        "flatten": {
+        "Flatten": {
           "description": "specifies fields to import from the specified table",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
-        "data_type": {
+        "DataType": {
           "description": "field type",
           "enum": [
             "uuid",
@@ -51,7 +51,7 @@
             "array"
           ]
         },
-        "options": {
+        "Options": {
           "description": "optional field behaviours",
           "type": "array",
           "items": {
@@ -73,7 +73,7 @@
             ]
           }
         },
-        "filter": {
+        "Filter": {
           "description": "type of filter which the field can supply",
           "enum": [
             "filter-list-single",
@@ -85,19 +85,24 @@
             "filter-date"
           ]
         },
-        "generator": {
+        "Generator": {
           "description": "data generator to use, and must be wrapped in [ ], e.g. [name]",
           "type": "string"
         },
-        "editor": {
+        "Editor": {
           "description": "preferred UI editor",
-          "enum": ["EntityEditText"]
+          "enum": [
+            "EntityEditText"
+          ]
         }
       },
       "additionalProperties": false,
-      "required": ["name", "help"]
+      "required": [
+        "Name",
+        "Help"
+      ]
     },
-    "data_fields": {
+    "DataFields": {
       "description": "a list fields, which can include pre-defined template fields",
       "type": "array",
       "items": {
@@ -110,9 +115,9 @@
       "description": "unique database ID for the model",
       "type": "string"
     },
-    "help": {
-      "description": "documentation for the model",
-      "type": "string"
+    "Help": {
+      "Description": "documentation for the model",
+      "Type": "string"
     },
     "Namespace": {
       "description": "unique name for the model",
@@ -156,23 +161,27 @@
     "SelectorQuery": {
       "description": "describes how to transform an entity into a format for dropdown selection",
       "properties": {
-        "columns": {
+        "Columns": {
           "description": "columns to extract from source entities",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
-        "orderby": {
+        "Orderby": {
           "description": "column to sort by",
           "type": "string"
         },
-        "help": {
+        "Help": {
           "description": "description of where the selectr might be used",
           "type": "string"
         }
       },
-      "required": ["columns", "orderby", "help"]
+      "required": [
+        "Columns",
+        "Orderby",
+        "Help"
+      ]
     },
     "Joins": {
       "description": "Many to many joins",
@@ -180,20 +189,24 @@
       "items": {
         "type": "object",
         "properties": {
-          "name": {
+          "Name": {
             "description": "name of the join",
             "type": "string"
           },
-          "table1": {
+          "Table1": {
             "description": "first table in the join",
             "type": "string"
           },
-          "table2": {
+          "Table2": {
             "description": "second table in the join",
             "type": "string"
           }
         },
-        "required": ["name", "table1", "table2"]
+        "required": [
+          "Name",
+          "Table1",
+          "Table2"
+        ]
       }
     },
     "TemplateFields": {
@@ -216,31 +229,31 @@
       "items": {
         "type": "object",
         "properties": {
-          "name": {
+          "Name": {
             "description": "unique repository name",
             "type": "string"
           },
-          "help": {
+          "Help": {
             "description": "documentation on repository purpose",
             "type": "string"
           },
-          "caption": {
+          "Caption": {
             "description": "text to display in user interface",
             "type": "string"
           },
-          "path": {
+          "Path": {
             "description": "API path if applicable",
             "type": "string"
           },
-          "icon": {
+          "Icon": {
             "description": "icon to display in user interface",
             "type": "string"
           },
-          "inherit": {
+          "Inherit": {
             "description": "a string containing the name of another repository to inherit details from",
             "type": "string"
           },
-          "table_entity": {
+          "TableEntity": {
             "type": "object",
             "properties": {
               "entity": {
@@ -251,75 +264,84 @@
               }
             }
           },
-          "treeview": {
+          "Treeview": {
             "description": "Indicates if data can be displayed hierarchically",
             "type": "boolean"
           },
-          "template_fields": {
-            "description": "fields to import from the list of template_fields",
+          "TemplateFields": {
+            "description": "fields to import from the list of TemplateFields",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
-          "data_fields": {
-            "$ref": "#/definitions/data_fields"
+          "DataFields": {
+            "$ref": "#/definitions/DataFields"
           },
-          "field_order": {
+          "FieldOrder": {
             "description": "order in which to display fields",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
-          "icon_map": {
+          "IconMap": {
             "description": "specify the icon (value) to use for each label value",
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "label": {
+                "Label": {
                   "description": "unique key used as a lookup to get the icon to use",
                   "type": "string"
                 },
-                "value": {
+                "Value": {
                   "description": "the name of the icon",
                   "type": "string"
                 }
               },
-              "required": ["label", "value"]
+              "required": [
+                "Label",
+                "Value"
+              ]
             }
           },
-          "icon_field": {
+          "IconField": {
             "description": "name of the field which informs the name of the preferred icon",
             "type": "string"
           },
-          "noroute": {
+          "NoRoute": {
             "description": "exclude the repository from automatic route generation",
             "type": "boolean",
             "default": false
           },
-          "collapse_fields": {
+          "CollapseFields": {
             "description": "fields to import from a deeply nested graph object",
             "type": "object",
             "properties": {
-              "source_field": {
+              "SourceField": {
                 "description": "path to graph object from which to source data",
                 "type": "string"
               },
-              "key_path": {
+              "KeyPath": {
                 "description": "path from which to extract the key",
                 "type": "string"
               },
-              "value_path": {
+              "ValuePath": {
                 "description": "path from which to extract the value",
                 "type": "string"
               }
             },
-            "required": ["source_field", "key_path", "value_path"]
+            "required": [
+              "SourceField",
+              "KeyPath",
+              "ValuePath"
+            ]
           }
         },
-        "required": ["name"],
+        "required": [
+          "Name"
+        ],
         "additionalProperties": false
       }
     },
@@ -329,22 +351,25 @@
       "items": {
         "type": "object",
         "properties": {
-          "name": {
+          "Name": {
             "description": "unique name",
             "type": "string"
           },
-          "type": {
-            "enum": ["single", "multiple"]
+          "Type": {
+            "enum": [
+              "single",
+              "multiple"
+            ]
           },
-          "from": {
+          "From": {
             "description": "path to source object",
             "type": "string"
           },
-          "key": {
+          "Key": {
             "description": "name of the key attribute in the source object",
             "type": "string"
           },
-          "columns": {
+          "Columns": {
             "description": "list of columns to extract from the source object",
             "type": "array",
             "items": {
@@ -352,7 +377,12 @@
             }
           }
         },
-        "required": ["name", "from", "key", "columns"]
+        "required": [
+          "Name",
+          "From",
+          "Key",
+          "Columns"
+        ]
       }
     },
     "Generators": {
@@ -363,7 +393,7 @@
           {
             "type": "object",
             "properties": {
-              "values": {
+              "Values": {
                 "description": "object data structure which is interpreted by the data generator",
                 "type": "object",
                 "additionalProperties": true
@@ -374,16 +404,19 @@
             "description": "key value pair of data generator values which can be randomly selected",
             "type": "object",
             "properties": {
-              "name": {
+              "Name": {
                 "description": "unique name",
                 "type": "string"
               },
-              "values": {
+              "Values": {
                 "description": "semicolon separated values",
                 "type": "string"
               }
             },
-            "required": ["name", "values"]
+            "required": [
+              "Name",
+              "Values"
+            ]
           }
         ]
       }
@@ -394,11 +427,11 @@
       "items": {
         "type": "object",
         "properties": {
-          "entity": {
+          "Entity": {
             "description": "name of the entity which will trigger the execution of the scripts",
             "type": "string"
           },
-          "scripts": {
+          "Scripts": {
             "description": "list of actions to execute sequentially",
             "type": "array",
             "items": {
@@ -406,9 +439,15 @@
             }
           }
         },
-        "required": ["entity", "scripts"]
+        "required": [
+          "Entity",
+          "Scripts"
+        ]
       }
     }
   },
-  "required": ["SchemaName", "Namespace"]
+  "required": [
+    "SchemaName",
+    "Namespace"
+  ]
 }
