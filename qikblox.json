@@ -250,10 +250,10 @@
           "TableEntity": {
             "type": "object",
             "properties": {
-              "entity": {
+              "Entity": {
                 "type": "string"
               },
-              "table": {
+              "Table": {
                 "type": "string"
               }
             }
