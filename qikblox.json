@@ -88,12 +88,6 @@
         "Generator": {
           "description": "data generator to use, and must be wrapped in [ ], e.g. [name]",
           "type": "string"
-        },
-        "Editor": {
-          "description": "preferred UI editor",
-          "enum": [
-            "EntityEditText"
-          ]
         }
       },
       "additionalProperties": false,
@@ -433,10 +427,7 @@
           },
           "Scripts": {
             "description": "list of actions to execute sequentially",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "type": "string"
           }
         },
         "required": [
