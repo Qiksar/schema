@@ -39,17 +39,7 @@
         },
         "DataType": {
           "description": "field type",
-          "enum": [
-            "uuid",
-            "boolean",
-            "string",
-            "integer",
-            "number",
-            "timestamp",
-            "json",
-            "object",
-            "array"
-          ]
+          "enum": ["uuid", "boolean", "string", "integer", "number", "timestamp", "json", "object", "array"]
         },
         "Options": {
           "description": "optional field behaviours",
@@ -91,10 +81,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "Name",
-        "Help"
-      ]
+      "required": ["Name", "Help"]
     },
     "DataFields": {
       "description": "a list fields, which can include pre-defined template fields",
@@ -171,11 +158,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "Columns",
-        "Orderby",
-        "Help"
-      ]
+      "required": ["Columns", "Orderby", "Help"]
     },
     "Joins": {
       "description": "Many to many joins",
@@ -196,11 +179,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "Name",
-          "Table1",
-          "Table2"
-        ]
+        "required": ["Name", "Table1", "Table2"]
       }
     },
     "TemplateFields": {
@@ -294,15 +273,17 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "Label",
-                "Value"
-              ]
+              "required": ["Label", "Value"]
             }
           },
           "IconField": {
             "description": "name of the field which informs the name of the preferred icon",
             "type": "string"
+          },
+          "Abstract": {
+            "description": "indicates a base type used by other components",
+            "type": "boolean",
+            "default": false
           },
           "NoRoute": {
             "description": "exclude the repository from automatic route generation",
@@ -326,16 +307,10 @@
                 "type": "string"
               }
             },
-            "required": [
-              "SourceField",
-              "KeyPath",
-              "ValuePath"
-            ]
+            "required": ["SourceField", "KeyPath", "ValuePath"]
           }
         },
-        "required": [
-          "Name"
-        ],
+        "required": ["Name"],
         "additionalProperties": false
       }
     },
@@ -350,10 +325,7 @@
             "type": "string"
           },
           "Type": {
-            "enum": [
-              "single",
-              "multiple"
-            ]
+            "enum": ["single", "multiple"]
           },
           "From": {
             "description": "path to source object",
@@ -371,12 +343,7 @@
             }
           }
         },
-        "required": [
-          "Name",
-          "From",
-          "Key",
-          "Columns"
-        ]
+        "required": ["Name", "From", "Key", "Columns"]
       }
     },
     "Generators": {
@@ -407,10 +374,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "Name",
-              "Values"
-            ]
+            "required": ["Name", "Values"]
           }
         ]
       }
@@ -430,15 +394,9 @@
             "type": "string"
           }
         },
-        "required": [
-          "Entity",
-          "Scripts"
-        ]
+        "required": ["Entity", "Scripts"]
       }
     }
   },
-  "required": [
-    "SchemaName",
-    "Namespace"
-  ]
+  "required": ["SchemaName", "Namespace"]
 }
