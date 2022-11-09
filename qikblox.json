@@ -290,7 +290,7 @@
             "type": "boolean",
             "default": false
           },
-          "CollapseFields": {
+          "NestedFields": {
             "description": "fields to import from a deeply nested graph object",
             "type": "object",
             "properties": {
